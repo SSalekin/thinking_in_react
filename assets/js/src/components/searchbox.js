@@ -122,7 +122,7 @@ var FilterableProductTable = React.createClass({
   }
 });
 
-ReactDOM.render(
+React.render(
   <FilterableProductTable products={PRODUCTS} />,
   document.getElementById('content')
 );
