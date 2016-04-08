@@ -5,6 +5,8 @@ var browserSync  = require('browser-sync');
 var concat       = require('gulp-concat');
 var notify       = require('gulp-notify');
 var reload       = browserSync.reload;
+var minify       = require('gulp-minify');
+var reactify     = require('reactify');
 
 var onError = function(err) {
   notify.onError({
@@ -15,9 +17,10 @@ var onError = function(err) {
 };
 
 gulp.task('build', function() {
-  return gulp.src('assets/js/src/components/*.js')
-    .pipe(babel())
-    .pipe(browserify())
+  return gulp.src('assets/js/src/components/renderer.js')
+    .pipe(browserify({
+      transform: "reactify"
+    }))
     .pipe(concat('app.js'))
     .pipe(gulp.dest('build/js'));
 });
@@ -37,4 +40,17 @@ gulp.task('browsersync', function() {
   });
 });
 
-gulp.task('default', ['build', 'browsersync', 'watch']);
+gulp.task('compress', function() {
+  gulp.src('build/js/*.js')
+    .pipe(minify({
+        ext:{
+            src:'-debug.js',
+            min:'.js'
+        },
+        exclude: ['tasks'],
+        ignoreFiles: ['.combo.js', '-min.js']
+    }))
+    .pipe(gulp.dest('build/js/min'))
+});
+
+gulp.task('default', ['build', 'compress', 'browsersync', 'watch']);

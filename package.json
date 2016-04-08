@@ -2,7 +2,7 @@
   "name": "thinking_in_react",
   "version": "1.0.0",
   "description": "none",
-  "main": "index.js",
+  "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -30,11 +30,13 @@
     "gulp-concat": "^2.6.0",
     "gulp-eslint": "^1.0.0",
     "gulp-filter": "^3.0.1",
+    "gulp-minify": "0.0.7",
     "gulp-newer": "^1.1.0",
     "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.0.1",
     "gulp-react": "^3.1.0",
     "gulp-sass": "^2.0.4",
-    "gulp-sourcemaps": "^1.5.2"
+    "gulp-sourcemaps": "^1.5.2",
+    "reactify": "1.1.1"
   }
 }
